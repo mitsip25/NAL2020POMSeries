@@ -16,6 +16,7 @@ import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Listeners;
+import org.testng.annotations.Parameters;
 
 import com.qa.hubspot.base.BasePage;
 import com.qa.hubspot.listeners.TestAllureListener;
@@ -36,11 +37,20 @@ public class HomePageTest {
 	Credentials userCred;
 
 	@BeforeTest(alwaysRun=true)
-	public void setUp(){
+	@Parameters(value= {"browser"})
+	public void setUp(String browser){
 
 		basePage = new BasePage();
 		prop = basePage.initProperties();
-		String browserName = prop.getProperty("browser");
+		//for parallel execution
+		String browserName=null;
+		
+		if(browser.equals(null)){
+			browserName = prop.getProperty("browser");
+		}else{
+			browserName= browser;
+		}
+		
 		driver  = basePage.initDriver(browserName);
 		driver.get(prop.getProperty("url"));
 		loginPage = new LoginPage(driver);

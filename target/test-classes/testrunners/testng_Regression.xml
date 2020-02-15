@@ -29,9 +29,7 @@
 			<!-- <class name="com.qa.hubspot.testcases.HomePageTest" /> 
 			<class name="com.qa.hubspot.testcases.ContactsPageTest" /> -->
 			<class name="com.qa.hubspot.testcases.LoginPageTest" />
-			
-			
-			
+
 		</classes>
 	</test>
 </suite> 
